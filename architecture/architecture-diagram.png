@@ -1,0 +1,25 @@
+# Architecture Diagram Description
+
+# Components & Data Flow
+	1. Internet Users
+    ↳ Access the application through the Application Load Balancer (ALB) DNS name.
+	2. Application Load Balancer (ALB)
+		○ Internet-facing ALB
+		○ Listens on HTTP (80) / HTTPS (443)
+		○ Distributes incoming traffic to healthy EC2 instances.
+	3. AWS WAF (Web Application Firewall)
+		○ Protects the ALB by inspecting and filtering malicious traffic and bots.
+	4. Auto Scaling Group (ASG)
+		○ Automatically manages EC2 instances based on demand.
+		○ Uses a Launch Template with a custom AMI that contains Ubuntu + Nginx.
+		○ Maintains desired instance count (min:1, desired:2, max:4).
+		○ Instances spread across multiple Availability Zones.
+	5. EC2 Instances (Ubuntu + Nginx)
+		○ Serve the web content.
+		○ Based on the custom AMI configured earlier.
+	6. Launch Template
+		○ Contains AMI ID and instance configuration used by ASG.
+	7. Networking
+		○ Instances and ALB reside within a VPC.
+		○ Instances deployed in multiple public subnets for high availability.
+# Security Groups allow SSH (22), HTTP (80), HTTPS (443) as appropriate.
