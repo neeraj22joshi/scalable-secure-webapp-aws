@@ -50,4 +50,3 @@ The user-data script automates the installation and setup of Nginx on an Ubuntu 
 ---
 
 Happy scaling with AWS and Nginx! 🚀
-<img width="739" height="1113" alt="image" src="https://github.com/user-attachments/assets/5c96081c-929b-4c7b-b17b-31382d583d4f" />
